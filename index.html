@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Time-Traveler's Tightrope</title>
+    <link rel="stylesheet" href="src/css/style.css">
+</head>
+<body>
+    <div class="game-container">
+        <div class="game-header">
+            <h1>Time-Traveler's Tightrope</h1>
+            <div class="score-container">
+                <span>Score: </span>
+                <span id="score">0</span>
+            </div>
+            <div class="era-container">
+                <span>Current Era: </span>
+                <span id="current-era">Jurassic</span>
+            </div>
+        </div>
+        <canvas id="gameCanvas"></canvas>
+        <div class="game-controls">
+            <p>Use ↑ or Space to jump and ↓ to duck. Press Space or Enter to restart after game over.</p>
+        </div>
+    </div>
+    
+    <div id="game-over" class="hidden">
+        <div class="game-over-content">
+            <h2>Game Over!</h2>
+            <p>Your score: <span id="final-score">0</span></p>
+            <button id="restart-button">Play Again</button>
+        </div>
+    </div>
+
+    <script src="src/js/constants.js"></script>
+    <script src="src/js/player.js"></script>
+    <script src="src/js/obstacle.js"></script>
+    <script src="src/js/era.js"></script>
+    <script src="src/js/game.js"></script>
+    <script src="src/js/main.js"></script>
+</body>
+</html> 
