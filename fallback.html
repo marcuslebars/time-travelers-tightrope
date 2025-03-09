@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Time-Traveler's Tightrope - Fallback</title>
+    <style>
+        body {
+            font-family: 'Courier New', monospace;
+            background-color: #121212;
+            color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .container {
+            max-width: 800px;
+            padding: 20px;
+            background-color: #1a1a1a;
+            border-radius: 10px;
+            border: 3px solid #00ffaa;
+            box-shadow: 0 0 20px rgba(0, 255, 170, 0.5);
+        }
+        
+        h1 {
+            color: #00ffaa;
+            text-shadow: 0 0 10px rgba(0, 255, 170, 0.7);
+        }
+        
+        .error-info {
+            background-color: rgba(255, 0, 0, 0.2);
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+            text-align: left;
+            white-space: pre-wrap;
+            overflow-x: auto;
+        }
+        
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #00ffaa;
+            color: #121212;
+            border: none;
+            border-radius: 5px;
+            font-family: inherit;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        button:hover {
+            background-color: #00cc88;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Time-Traveler's Tightrope</h1>
+        <p>Oops! It seems like the game couldn't load properly.</p>
+        
+        <div class="error-info" id="error-info">
+            Checking for errors...
+        </div>
+        
+        <p>Try these troubleshooting steps:</p>
+        <ol style="text-align: left;">
+            <li>Make sure JavaScript is enabled in your browser</li>
+            <li>Try using a different browser (Chrome, Firefox, or Edge recommended)</li>
+            <li>Clear your browser cache and reload the page</li>
+            <li>Check your internet connection</li>
+        </ol>
+        
+        <button onclick="window.location.href='index.html'">Try Again</button>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const errorInfo = document.getElementById('error-info');
+            
+            // Check if we were redirected here due to an error
+            const urlParams = new URLSearchParams(window.location.search);
+            const errorMessage = urlParams.get('error');
+            
+            if (errorMessage) {
+                errorInfo.textContent = `Error: ${decodeURIComponent(errorMessage)}`;
+            } else {
+                // Try to diagnose common issues
+                let diagnostics = '';
+                
+                // Check if JavaScript is enabled (this will run, so it is)
+                diagnostics += '✅ JavaScript is enabled\n';
+                
+                // Check browser compatibility
+                const isChrome = /Chrome/.test(navigator.userAgent) && !/Edge/.test(navigator.userAgent);
+                const isFirefox = /Firefox/.test(navigator.userAgent);
+                const isEdge = /Edge/.test(navigator.userAgent);
+                
+                if (isChrome || isFirefox || isEdge) {
+                    diagnostics += '✅ Using a supported browser\n';
+                } else {
+                    diagnostics += '⚠️ Using a potentially unsupported browser\n';
+                }
+                
+                // Check if localStorage is available
+                try {
+                    localStorage.setItem('test', 'test');
+                    localStorage.removeItem('test');
+                    diagnostics += '✅ LocalStorage is available\n';
+                } catch (e) {
+                    diagnostics += '❌ LocalStorage is not available\n';
+                }
+                
+                // Check if canvas is supported
+                const canvas = document.createElement('canvas');
+                if (canvas.getContext) {
+                    diagnostics += '✅ Canvas is supported\n';
+                } else {
+                    diagnostics += '❌ Canvas is not supported\n';
+                }
+                
+                errorInfo.textContent = diagnostics;
+            }
+        });
+    </script>
+</body>
+</html> 

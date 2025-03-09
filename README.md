@@ -10,10 +10,10 @@ One moment you're dodging a pterodactyl's swoop in the Jurassic period, the next
 
 ## How to Play
 
-- **Controls**: Use the **Up Arrow** to jump and the **Down Arrow** to duck, avoiding obstacles.
+- **Controls**: Use the **Up Arrow** or **Spacebar** to jump and the **Down Arrow** to duck, avoiding obstacles.
 - **Mobile**: Tap the top half of the screen to jump, bottom half to duck.
 - **Scoring**: Earn 1 point for each obstacle avoided, with a bonus 5 points for surviving a full time shift.
-- **Game Over**: Fall off the rope or collide with an obstacle to end the game. Press Enter or click/tap to restart.
+- **Game Over**: Fall off the rope or collide with an obstacle to end the game. Press Spacebar, Enter, or click/tap to restart.
 
 ## Features
 
@@ -49,13 +49,65 @@ One moment you're dodging a pterodactyl's swoop in the Jurassic period, the next
    npx serve
    ```
 
-## Deployment
+## Deployment to Vercel
 
-This game is designed to be easily deployed on Vercel:
+### Method 1: Direct Deployment
 
-1. Push your code to a GitHub repository
-2. Connect the repository to Vercel
-3. Deploy with default settings
+1. Install the Vercel CLI if you haven't already:
+   ```
+   npm install -g vercel
+   ```
+
+2. Deploy the project:
+   ```
+   vercel
+   ```
+
+### Method 2: Using the Deployment Script
+
+1. Make sure you have Node.js installed.
+
+2. Run the deployment script:
+   ```
+   node deploy.js
+   ```
+
+3. Navigate to the dist directory:
+   ```
+   cd dist
+   ```
+
+4. Deploy with Vercel:
+   ```
+   vercel
+   ```
+
+### Method 3: GitHub Integration
+
+1. Push your code to a GitHub repository.
+
+2. Connect the repository to Vercel through the Vercel dashboard.
+
+3. Configure the build settings:
+   - Build Command: Leave empty (static deployment)
+   - Output Directory: Leave empty (root directory)
+   - Install Command: Leave empty (no dependencies)
+
+4. Deploy with default settings.
+
+## Troubleshooting Deployment Issues
+
+If you encounter issues with the game not working properly on Vercel:
+
+1. Check the browser console for any JavaScript errors.
+
+2. Make sure all file paths are correct (case-sensitive on some servers).
+
+3. Verify that all game files are being properly deployed to Vercel.
+
+4. Try using the debug mode by adding `?debug=true` to the URL.
+
+5. If specific features aren't working, check the debug information displayed on the screen.
 
 ## License
 
